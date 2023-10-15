@@ -3,7 +3,6 @@ package com.ulbra.metroplanpdfautomation.DTOs;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.lang.NonNull;
 
 import java.util.List;
 
@@ -18,6 +17,6 @@ public class StudentInformation {
 
     @Override
     public String toString() {
-        return getPresencialDays().toString();
+        return getPresencialDays().toString().replace("[", "").replace("]", "");
     }
 }
