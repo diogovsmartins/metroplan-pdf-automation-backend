@@ -1,10 +1,10 @@
 package com.ulbra.metroplanpdfautomation.controllers;
 
-import static com.ulbra.metroplanpdfautomation.controllers.ServletHeaders.CONTENT_DISPOSITION_HEADER;
-import static com.ulbra.metroplanpdfautomation.controllers.ServletHeaders.FILE_ATTACHMENT_HEADER;
+import static com.ulbra.metroplanpdfautomation.domain.businessEnums.ServletHeaders.CONTENT_DISPOSITION_HEADER;
+import static com.ulbra.metroplanpdfautomation.domain.businessEnums.ServletHeaders.FILE_ATTACHMENT_HEADER;
 
-import com.ulbra.metroplanpdfautomation.DTOs.StudentInformation;
-import com.ulbra.metroplanpdfautomation.entities.PdfEntity;
+import com.ulbra.metroplanpdfautomation.domain.DTOs.StudentInformation;
+import com.ulbra.metroplanpdfautomation.domain.entities.PdfEntity;
 import com.ulbra.metroplanpdfautomation.services.PdfEditorService;
 import com.ulbra.metroplanpdfautomation.services.PdfEntityService;
 import java.text.DateFormat;

@@ -1,7 +1,7 @@
 package com.ulbra.metroplanpdfautomation.services;
 
-import com.ulbra.metroplanpdfautomation.DTOs.StudentInformation;
-import com.ulbra.metroplanpdfautomation.entities.PdfEntity;
+import com.ulbra.metroplanpdfautomation.domain.DTOs.StudentInformation;
+import com.ulbra.metroplanpdfautomation.domain.entities.PdfEntity;
 import com.ulbra.metroplanpdfautomation.repositories.PdfRepository;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Objects;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.pdfbox.pdmodel.PDDocument;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,6 +18,7 @@ public class PdfEntityService {
 
   private final PdfRepository pdfRepository;
 
+  @Autowired
   public PdfEntityService(final PdfRepository pdfRepository) {
     this.pdfRepository = pdfRepository;
   }

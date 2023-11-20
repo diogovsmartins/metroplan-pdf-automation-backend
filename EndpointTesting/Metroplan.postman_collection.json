@@ -6,210 +6,322 @@
 	},
 	"item": [
 		{
-			"name": "Get Pdf By Id",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/pdf",
-						"type": "text",
-						"disabled": true
-					}
-				],
-				"body": {
-					"mode": "formdata",
-					"formdata": [],
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "Pdf Requests",
+			"item": [
+				{
+					"name": "Save pdf",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/pdf",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "document",
+									"type": "file",
+									"src": "/home/diogo/Downloads/Atestado Manuella Lopes farias .pdf"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/pdf/savePdf?studentName=Ari&studentEmail=emailAri@gmail.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pdf",
+								"savePdf"
+							],
+							"query": [
+								{
+									"key": "studentName",
+									"value": "Ari"
+								},
+								{
+									"key": "studentEmail",
+									"value": "emailAri@gmail.com"
+								},
+								{
+									"key": "studentPresencialDays",
+									"value": "segunda,terça,quarta",
+									"disabled": true
+								}
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:8080/pdf/id?id=1",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"pdf",
-						"id"
-					],
-					"query": [
-						{
-							"key": "id",
-							"value": "1"
+				{
+					"name": "Merge Pdfs",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/pdf",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "document",
+									"type": "file",
+									"src": "/home/diogo/Downloads/Atestado Manuella Lopes farias .pdf"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/pdf/generateDeclaration?studentName=diogomartins&studentEmail=email@email.com&studentPresencialDays=segunda,terça,quarta",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pdf",
+								"generateDeclaration"
+							],
+							"query": [
+								{
+									"key": "studentName",
+									"value": "diogomartins"
+								},
+								{
+									"key": "studentEmail",
+									"value": "email@email.com"
+								},
+								{
+									"key": "studentPresencialDays",
+									"value": "segunda,terça,quarta"
+								}
+							]
 						}
-					]
+					},
+					"response": []
+				},
+				{
+					"name": "Get Pdf By Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/pdf",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/pdf/id?id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pdf",
+								"id"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Pdfs By Email",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/pdf",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/pdf/?userEmail=emailAri@gmail.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pdf",
+								""
+							],
+							"query": [
+								{
+									"key": "userEmail",
+									"value": "emailAri@gmail.com"
+								}
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "Get All Pdfs By Email",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/pdf",
-						"type": "text",
-						"disabled": true
-					}
-				],
-				"body": {
-					"mode": "formdata",
-					"formdata": [],
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "User Requests",
+			"item": [
+				{
+					"name": "Create a User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"email@email.com\",\n    \"password\":\"password123\",\n    \"roles\":\"PROFESSOR, COORDINATOR\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/user/create?callerRoles=STUDENT",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"create"
+							],
+							"query": [
+								{
+									"key": "callerRoles",
+									"value": "STUDENT"
+								}
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:8080/pdf/?userEmail=emailAri@gmail.com",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"pdf",
-						""
-					],
-					"query": [
-						{
-							"key": "userEmail",
-							"value": "emailAri@gmail.com"
+				{
+					"name": "Update a User",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"email@email.com\",\n    \"password\":\"password1234567\",\n    \"roles\":\"PROFESSOR, COORDINATOR, STUDENT\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/user/update?callerRoles=COORDINATOR",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"update"
+							],
+							"query": [
+								{
+									"key": "callerRoles",
+									"value": "COORDINATOR"
+								}
+							]
 						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Merge Pdfs",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/pdf",
-						"type": "text",
-						"disabled": true
-					}
-				],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "document",
-							"type": "file",
-							"src": "/home/diogo/Downloads/Atestado Manuella Lopes farias .pdf"
-						}
-					],
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:8080/pdf/generateDeclaration?studentName=diogomartins&studentEmail=email@email.com&studentPresencialDays=segunda,terça,quarta",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"pdf",
-						"generateDeclaration"
-					],
-					"query": [
-						{
-							"key": "studentName",
-							"value": "diogomartins"
+				{
+					"name": "Check User Roles",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"email@email.com\",\n    \"password\":\"password1234567\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
-						{
-							"key": "studentEmail",
-							"value": "email@email.com"
-						},
-						{
-							"key": "studentPresencialDays",
-							"value": "segunda,terça,quarta"
+						"url": {
+							"raw": "http://localhost:8080/user/roles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"roles"
+							]
 						}
-					]
+					},
+					"response": []
 				}
-			},
-			"response": []
-		},
-		{
-			"name": "Save pdf",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/pdf",
-						"type": "text",
-						"disabled": true
-					}
-				],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "document",
-							"type": "file",
-							"src": "/home/diogo/Downloads/Atestado Manuella Lopes farias .pdf"
-						}
-					],
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8080/pdf/savePdf?studentName=Ari&studentEmail=emailAri@gmail.com",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"pdf",
-						"savePdf"
-					],
-					"query": [
-						{
-							"key": "studentName",
-							"value": "Ari"
-						},
-						{
-							"key": "studentEmail",
-							"value": "emailAri@gmail.com"
-						},
-						{
-							"key": "studentPresencialDays",
-							"value": "segunda,terça,quarta",
-							"disabled": true
-						}
-					]
-				}
-			},
-			"response": []
+			]
 		}
 	]
 }

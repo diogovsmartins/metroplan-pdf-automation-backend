@@ -1,4 +1,4 @@
-package com.ulbra.metroplanpdfautomation.controllers;
+package com.ulbra.metroplanpdfautomation.domain.businessEnums;
 
 public enum ServletHeaders {
   CONTENT_DISPOSITION_HEADER("Content-Disposition"),

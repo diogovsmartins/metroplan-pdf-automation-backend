@@ -1,4 +1,4 @@
-package com.ulbra.metroplanpdfautomation.DTOs;
+package com.ulbra.metroplanpdfautomation.domain.DTOs;
 
 import java.util.List;
 import lombok.Builder;

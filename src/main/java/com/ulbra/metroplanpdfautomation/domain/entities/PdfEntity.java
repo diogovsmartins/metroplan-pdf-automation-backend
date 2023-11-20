@@ -1,4 +1,4 @@
-package com.ulbra.metroplanpdfautomation.entities;
+package com.ulbra.metroplanpdfautomation.domain.entities;
 
 import javax.persistence.*;
 import lombok.*;

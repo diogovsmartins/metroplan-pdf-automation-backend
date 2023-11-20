@@ -3,7 +3,7 @@ package com.ulbra.metroplanpdfautomation.services;
 import static com.ulbra.metroplanpdfautomation.helpers.ConstantHelper.PRESENCIALITY_DECLARATION_TEXT_TEMPLATE;
 import static com.ulbra.metroplanpdfautomation.helpers.ConstantHelper.PRESENCIALITY_DECLARATION_TITTLE;
 
-import com.ulbra.metroplanpdfautomation.DTOs.StudentInformation;
+import com.ulbra.metroplanpdfautomation.domain.DTOs.StudentInformation;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,6 +19,7 @@ import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -28,6 +29,7 @@ public class PdfEditorService {
   Logger LOGGER = LoggerFactory.getLogger(PdfEditorService.class);
   private final PdfEntityService pdfEntityService;
 
+  @Autowired
   public PdfEditorService(final PdfEntityService pdfEntityService) {
     this.pdfEntityService = pdfEntityService;
   }
