@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping(value = "/user")
 public class UserController {
@@ -33,9 +34,11 @@ public class UserController {
 
   @GetMapping("/roles")
   public ResponseEntity<UserEntityDTO> checkUserRoles(
-      @RequestBody final UserEntityDTO userToBeCreated) {
+      @RequestParam final String email, @RequestParam final String password) {
 
     return ResponseEntity.ok()
-        .body(userEntityService.getUserRolesByEmailAndPassword(userToBeCreated));
+        .body(
+            userEntityService.getUserRolesByEmailAndPassword(
+                UserEntityDTO.builder().email(email).password(password).build()));
   }
 }

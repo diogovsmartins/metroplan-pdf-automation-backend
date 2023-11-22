@@ -36,7 +36,6 @@ public class PdfEntityService {
   public void updatePdf(final byte[] bytes, final PdfEntity pdfEntity) {
     pdfEntity.setPdfBytes(bytes);
     pdfRepository.save(pdfEntity);
-
   }
 
   public void getPdfById(final Long id, final HttpServletResponse response) {

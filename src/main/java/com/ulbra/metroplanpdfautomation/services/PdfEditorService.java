@@ -4,6 +4,7 @@ import static com.ulbra.metroplanpdfautomation.helpers.ConstantHelper.PRESENCIAL
 import static com.ulbra.metroplanpdfautomation.helpers.ConstantHelper.PRESENCIALITY_DECLARATION_TITTLE;
 
 import com.ulbra.metroplanpdfautomation.domain.DTOs.StudentInformation;
+import com.ulbra.metroplanpdfautomation.domain.entities.PdfEntity;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,8 +13,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicReference;
 import javax.servlet.http.HttpServletResponse;
-
-import com.ulbra.metroplanpdfautomation.domain.entities.PdfEntity;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
@@ -93,20 +92,24 @@ public class PdfEditorService {
     }
   }
 
-  public void SignDocument(final List<PdfEntity> pdfEntityList){
-    pdfEntityList.stream().forEach(pdfEntity -> {
-      try {
-        PDDocument pdDocument = PDDocument.load(pdfEntity.getPdfBytes());
-        PDPageContentStream contentStream = new PDPageContentStream(pdDocument, pdDocument.getPage(0));
-        contentStream.drawImage(PDImageXObject.createFromFile("image.png", pdDocument), 20, 650);
-        contentStream.close();
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        pdDocument.save(baos);
-        pdfEntityService.updatePdf(baos.toByteArray(), pdfEntity);
-      } catch (IOException ioException) {
-        System.out.println(ioException.getMessage());
-      }
-    });
+  public void SignDocument(final List<PdfEntity> pdfEntityList) {
+    pdfEntityList.stream()
+        .forEach(
+            pdfEntity -> {
+              try {
+                PDDocument pdDocument = PDDocument.load(pdfEntity.getPdfBytes());
+                PDPageContentStream contentStream =
+                    new PDPageContentStream(pdDocument, pdDocument.getPage(0));
+                contentStream.drawImage(
+                    PDImageXObject.createFromFile("image.png", pdDocument), 20, 650);
+                contentStream.close();
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                pdDocument.save(baos);
+                pdfEntityService.updatePdf(baos.toByteArray(), pdfEntity);
+              } catch (IOException ioException) {
+                System.out.println(ioException.getMessage());
+              }
+            });
   }
 
   private static PDDocument mergeDocuments(final PDDocument file, final PDDocument pdDocument1) {
