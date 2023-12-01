@@ -18,5 +18,8 @@ public class PdfEntity {
 
   private String userEmail;
 
+  @Lob
+  private String base64Image;
+
   private String userName;
 }

@@ -17,7 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(originPatterns = "http://localhost:3000")
 @RestController
 @RequestMapping(value = "/pdf")
 public class PdfEditorController {
@@ -32,7 +32,7 @@ public class PdfEditorController {
     this.pdfEntityService = pdfEntityService;
   }
 
-  @GetMapping("/generateDeclaration")
+  @PostMapping("/generateDeclaration")
   public void generatePDF(
       final HttpServletResponse response,
       @RequestBody(required = false) final MultipartFile document,

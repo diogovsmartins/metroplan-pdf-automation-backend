@@ -23,13 +23,14 @@ public class PdfEntityService {
     this.pdfRepository = pdfRepository;
   }
 
-  public void savePdf(final byte[] bytes, final StudentInformation studentInformation) {
+  public void savePdf(final byte[] bytes, final StudentInformation studentInformation, final String base64Image) {
 
     pdfRepository.save(
         PdfEntity.builder()
             .pdfBytes(bytes)
             .userName(studentInformation.getName())
             .userEmail(studentInformation.getEmail())
+            .base64Image(base64Image)
             .build());
   }
 
