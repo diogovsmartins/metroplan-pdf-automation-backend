@@ -4,7 +4,7 @@ import com.ulbra.metroplanpdfautomation.domain.DTOs.UserEntityDTO;
 import com.ulbra.metroplanpdfautomation.domain.businessEnums.Roles;
 import com.ulbra.metroplanpdfautomation.domain.entities.UserEntity;
 import com.ulbra.metroplanpdfautomation.repositories.UserRepository;
-import java.util.Objects;
+import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -40,16 +40,16 @@ public class UserEntityService {
   }
 
   public void updateUserByEmail(final UserEntityDTO userEntityDTO, final String callerRoles) {
-    UserEntity userToBeUpdated = userRepository.findByEmail(userEntityDTO.getEmail());
-    if (Objects.isNull(userToBeUpdated)) {
+    Optional<UserEntity> userToBeUpdated = userRepository.findByEmail(userEntityDTO.getEmail());
+    if (userToBeUpdated.isEmpty()) {
       // If I have enough time, create a global handler and some custom business exceptions to throw
       // this will make it easer for the user to understand what's wrong
       return;
     }
-    userToBeUpdated.setEmail(userEntityDTO.getEmail());
-    userToBeUpdated.setPassword(userEntityDTO.getPassword());
-    checkCallerRoles(userEntityDTO, callerRoles, userToBeUpdated);
-    userRepository.save(userToBeUpdated);
+    userToBeUpdated.get().setEmail(userEntityDTO.getEmail());
+    userToBeUpdated.get().setPassword(userEntityDTO.getPassword());
+    checkCallerRoles(userEntityDTO, callerRoles, userToBeUpdated.get());
+    userRepository.save(userToBeUpdated.get());
   }
 
   private static void checkCallerRoles(

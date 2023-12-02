@@ -2,6 +2,7 @@ package com.ulbra.metroplanpdfautomation.domain.entities;
 
 import javax.persistence.*;
 import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
 
 @Data
 @Entity
@@ -9,7 +10,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserEntity {
+public class UserEntity implements GrantedAuthority {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
@@ -22,4 +23,9 @@ public class UserEntity {
 
   @Column(nullable = false)
   private String roles;
+
+  @Override
+  public String getAuthority() {
+    return roles;
+  }
 }
