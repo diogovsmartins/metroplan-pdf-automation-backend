@@ -12,6 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -58,16 +59,14 @@ public class PdfEditorController {
     this.pdfEditorService.generatePresencialityDeclaration(response, studentInformation, document);
   }
 
-  @GetMapping("/id")
+  @GetMapping("/{id}")
   public void getPdfById(
-      final HttpServletResponse response, @RequestParam(required = false) final Long id) {
-
-    pdfEntityService.getPdfById(id, response);
-
+      final HttpServletResponse response, @PathVariable Long id) {
     response.setContentType("application/pdf");
     String headerKey = CONTENT_DISPOSITION_HEADER.value;
     String headerValue = FILE_ATTACHMENT_HEADER.value + ".pdf";
     response.setHeader(headerKey, headerValue);
+    pdfEntityService.getPdfById(id, response);
   }
 
   @GetMapping()
