@@ -3,6 +3,7 @@ package com.ulbra.metroplanpdfautomation.config.authentication.jwt;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.ulbra.metroplanpdfautomation.domain.DTOs.TokenDTO;
 import java.util.*;
@@ -36,6 +37,7 @@ public class JwtTokenService {
   public TokenDTO createTokenVO(String username, List<String> roles) {
     return TokenDTO.builder()
         .username(username)
+        .roles(roles)
         .authenticated(true)
         .jwt(generateJWT(username, roles))
         .refreshJWT(generateRefreshJWT(username, roles))
@@ -55,8 +57,13 @@ public class JwtTokenService {
     if (!validateToken(token)) {
       return TokenDTO.builder().jwt(token).authenticated(false).build();
     }
-    String username = decodedToken(token).getSubject();
-    return TokenDTO.builder().jwt(token).authenticated(true).username(username).build();
+    Map<String, Claim> tokenClaims = decodedToken(token).getClaims();
+    return TokenDTO.builder()
+        .jwt(token)
+        .authenticated(true)
+        .username(tokenClaims.get("sub").toString())
+        .roles(List.of(tokenClaims.get("roles").toString().replace("\"", "")))
+        .build();
   }
 
   private String generateJWT(String username, List<String> roles) {

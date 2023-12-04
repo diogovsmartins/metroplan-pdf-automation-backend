@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping(value = "/user")
 public class UserController {
@@ -27,8 +26,9 @@ public class UserController {
 
   @PutMapping("/update")
   public ResponseEntity<String> updateAnUser(
-      @RequestBody final UserEntityDTO userToBeCreated, @RequestParam final String callerRoles) {
-    userEntityService.updateUserByEmail(userToBeCreated, callerRoles);
+      @RequestBody final UserEntityDTO userToBeCreated,
+      @RequestHeader String authorization) {
+    userEntityService.updateUserByEmail(userToBeCreated, authorization);
     return ResponseEntity.ok().body("User Updated Successfully.");
   }
 

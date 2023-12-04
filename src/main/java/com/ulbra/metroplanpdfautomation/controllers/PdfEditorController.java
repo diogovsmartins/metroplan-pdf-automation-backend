@@ -17,7 +17,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-@CrossOrigin(originPatterns = "http://localhost:3000")
 @RestController
 @RequestMapping(value = "/pdf")
 public class PdfEditorController {
@@ -67,6 +66,7 @@ public class PdfEditorController {
     pdfEntityService.getPdfById(id, response);
   }
 
+  @CrossOrigin(originPatterns = "http://localhost:3000")
   @GetMapping()
   public ResponseEntity<List<PdfEntity>> getAllPdfsByEmail(
       @RequestParam(required = false) final String userEmail) {

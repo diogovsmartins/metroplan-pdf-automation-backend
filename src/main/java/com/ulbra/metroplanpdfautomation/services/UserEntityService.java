@@ -5,6 +5,8 @@ import com.ulbra.metroplanpdfautomation.domain.businessEnums.Roles;
 import com.ulbra.metroplanpdfautomation.domain.entities.UserEntity;
 import com.ulbra.metroplanpdfautomation.repositories.UserRepository;
 import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -12,6 +14,7 @@ public class UserEntityService {
 
   private final UserRepository userRepository;
 
+  @Autowired
   public UserEntityService(final UserRepository userRepository) {
     this.userRepository = userRepository;
   }
@@ -31,7 +34,7 @@ public class UserEntityService {
     UserEntity userEntityToSave =
         UserEntity.builder()
             .email(userEntityDTO.getEmail())
-            .password(userEntityDTO.getPassword())
+            .password(new BCryptPasswordEncoder().encode(userEntityDTO.getPassword()))
             .build();
 
     checkCallerRoles(userEntityDTO, callerRoles, userEntityToSave);

@@ -1,6 +1,7 @@
 package com.ulbra.metroplanpdfautomation.config.authentication;
 
 import com.ulbra.metroplanpdfautomation.config.authentication.jwt.JwtTokenFilter;
+import com.ulbra.metroplanpdfautomation.domain.businessEnums.Roles;
 import lombok.*;
 import org.springframework.context.annotation.*;
 import org.springframework.security.authentication.*;
@@ -23,10 +24,10 @@ public class SpringSecurityConfig {
     http.csrf()
         .disable()
         .authorizeHttpRequests()
-        .antMatchers("/auth-microservice/**", "/swagger-ui/**", "/auth-microservice/v3/api-docs/**", "/h2-console/**")
+        .antMatchers("/auth/**", "/h2-console/**", "/user/create**")
         .permitAll()
         .anyRequest()
-        .denyAll()
+        .authenticated()
         .and()
         .sessionManagement()
         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
